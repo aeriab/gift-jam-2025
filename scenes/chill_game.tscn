@@ -6,6 +6,9 @@
 
 [node name="chillGame" type="Node2D"]
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
 [node name="ControlParent" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -17,21 +20,25 @@ texture = ExtResource("1_e0b1p")
 script = ExtResource("2_bqqsl")
 
 [node name="1AngelTile" type="Sprite2D" parent="GreyGridBackground"]
+visible = false
 position = Vector2(-340, -340)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_sqonb")
 
 [node name="1AngelTile2" type="Sprite2D" parent="GreyGridBackground"]
+visible = false
 position = Vector2(-115, -110)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_sqonb")
 
 [node name="1AngelTile3" type="Sprite2D" parent="GreyGridBackground"]
+visible = false
 position = Vector2(115, 110)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_sqonb")
 
 [node name="1AngelTile4" type="Sprite2D" parent="GreyGridBackground"]
+visible = false
 position = Vector2(340, 340)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_sqonb")
