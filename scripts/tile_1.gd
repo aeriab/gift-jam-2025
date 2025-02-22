@@ -15,3 +15,6 @@ func _process(delta):
 	
 	position.x = (x - 1.5) * 225
 	position.y = (y - 1.5) * 225
+	
+	#if Globals.player_moved == "up":
+		#print("moved up!!")

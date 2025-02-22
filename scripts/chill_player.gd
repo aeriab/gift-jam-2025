@@ -11,13 +11,21 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("ui_down"):
+	if Input.is_action_just_pressed("ui_down") && desired_pos.y < 400:
+		Globals.player_moved = "down"
 		desired_pos.y += 225
-	if Input.is_action_just_pressed("ui_up"):
+	if Input.is_action_just_pressed("ui_up") && desired_pos.y > -400:
+		Globals.player_moved = "up"
 		desired_pos.y -= 225
-	if Input.is_action_just_pressed("ui_left"):
+	if Input.is_action_just_pressed("ui_left") && desired_pos.x > -400:
+		Globals.player_moved = "left"
 		desired_pos.x -= 225
-	if Input.is_action_just_pressed("ui_right"):
+	if Input.is_action_just_pressed("ui_right") && desired_pos.x < 400:
+		Globals.player_moved = "right"
 		desired_pos.x += 225
 	
 	position = position.lerp(desired_pos, delta * FOLLOW_SPEED)
+	
+	Globals.player_pos = position
+	
+	
