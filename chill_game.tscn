@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://png5xwsvvejc"]
+
+[ext_resource type="Texture2D" uid="uid://cxv0dyocoj732" path="res://assets/GreyGridBackground.png" id="1_1n7ub"]
+
+[node name="chillGame" type="Node2D"]
+
+[node name="ControlParent" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GreyGridBackground" type="Sprite2D" parent="."]
+texture = ExtResource("1_1n7ub")
