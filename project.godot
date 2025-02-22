@@ -11,13 +11,10 @@ config_version=5
 [application]
 
 config/name="Gift Jam 2025"
-run/main_scene="res://scenes/test_scene.tscn"
+run/main_scene="res://clark_scene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
-
-[autoload]
-
-Globals="*res://globals/globals.gd"
+<<<<<<<HEADrun/main_scene="res://scenes/test_scene.tscn"
 
 [input]
 

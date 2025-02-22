@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd3ds5qu477ro"]
+
+[ext_resource type="Script" path="res://Clark Stuff/Circlebounce.gd" id="1_0jmx2"]
+[ext_resource type="PackedScene" uid="uid://dvegq3hthjfsx" path="res://Clark Stuff/square_bouncy.tscn" id="2_iokdv"]
+
+[node name="Sector" type="Node2D"]
+script = ExtResource("1_0jmx2")
+square_scene = ExtResource("2_iokdv")
+num_sides = 36
