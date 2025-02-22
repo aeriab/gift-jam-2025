@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://br0oxen088d43"]
 
 [ext_resource type="Texture2D" uid="uid://de5emtphmajaj" path="res://assets/emoji_tiles/1_angel_tile.png" id="1_a0fs4"]
-[ext_resource type="Script" path="res://scenes/tile_scenes/tile_1.gd" id="2_gxbgx"]
+[ext_resource type="Script" path="res://scripts/tile_1.gd" id="2_gxbgx"]
 
 [node name="tile_1" type="Sprite2D"]
 scale = Vector2(0.2, 0.2)

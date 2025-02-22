@@ -16,6 +16,14 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 <<<<<<<HEADrun/main_scene="res://scenes/test_scene.tscn"
 
+[autoload]
+
+Globals="*res://globals/globals.gd"
+
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 jump_action={
