@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfl8m12t3rxhn"]
+
+[ext_resource type="Texture2D" uid="uid://c3qjqha3pj6oi" path="res://assets/emoji_tiles/6_blue_skull_tile.png" id="1_owfxu"]
+
+[node name="tile_6" type="Sprite2D"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_owfxu")

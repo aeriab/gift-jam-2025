@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://br0oxen088d43"]
+
+[ext_resource type="Texture2D" uid="uid://de5emtphmajaj" path="res://assets/emoji_tiles/1_angel_tile.png" id="1_a0fs4"]
+
+[node name="tile_1" type="Sprite2D"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_a0fs4")
