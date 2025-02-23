@@ -11,6 +11,10 @@ var normed_pos: Vector2 = Vector2(0,0)
 
 var desired_pos
 
+var move_is_going: bool = false
+
+var my_mover_index: int
+
 func _ready():
 	if size == 1:
 		texture = _1_ANGEL_TILE
@@ -23,10 +27,14 @@ func _ready():
 	desired_pos = position
 	new_norm_pos()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func near_player_pos():
+	return ((Globals.player_pos.x <= desired_pos.x + 20 and Globals.player_pos.x >= desired_pos.x - 20) and (Globals.player_pos.y <= desired_pos.y + 20 and Globals.player_pos.y >= desired_pos.y - 20))
+
 func _process(delta):
-	if (Globals.player_pos.x <= desired_pos.x + 20 and Globals.player_pos.x >= desired_pos.x - 20) and (Globals.player_pos.y <= desired_pos.y + 20 and Globals.player_pos.y >= desired_pos.y - 20):
+	
+	if near_player_pos():
 		if Globals.player_moved == "up":
+			print(get_parent().push_boxes(normed_pos.y, normed_pos.x, Vector2(0,1)))
 			if desired_pos.y > -300:
 				desired_pos.y -= 225
 				new_norm_pos()
@@ -43,12 +51,10 @@ func _process(delta):
 				desired_pos.x += 225
 				new_norm_pos()
 	
-	
-	
 	position = position.lerp(desired_pos, delta * FOLLOW_SPEED)
 
 func new_norm_pos():
 	Globals.matrix[normed_pos.y][normed_pos.x] = 0
-	normed_pos.x = (desired_pos.x / 225.0) + 1.5
-	normed_pos.y = (desired_pos.y / 225.0) + 1.5
-	Globals.matrix[normed_pos.y][normed_pos.x] = -1
+	normed_pos.x = (desired_pos.x / 225.0) + 2.5
+	normed_pos.y = (desired_pos.y / 225.0) + 2.5
+	Globals.matrix[normed_pos.y][normed_pos.x] = size

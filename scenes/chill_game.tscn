@@ -16,7 +16,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="GreyGridBackground" type="Sprite2D" parent="."]
+[node name="GreyGrid" type="Sprite2D" parent="."]
 texture = ExtResource("1_e0b1p")
 script = ExtResource("2_bqqsl")
 

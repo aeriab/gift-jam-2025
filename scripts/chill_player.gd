@@ -5,11 +5,13 @@ var desired_pos = Vector2(-337.5,-337.5)
 const FOLLOW_SPEED = 8.0
 
 var normed_pos = Vector2(1,1)
+@onready var grey_grid = $"../GreyGrid"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	new_norm_pos()
 
+#grey_grid.move_player(normed_pos.y,normed_pos.x,Vector2(0,-1))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -35,6 +37,7 @@ func _process(delta):
 	Globals.player_pos = desired_pos
 
 func moving_actions():
+	Globals.move_cycle += 1
 	new_norm_pos()
 
 
