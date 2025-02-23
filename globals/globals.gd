@@ -11,7 +11,6 @@ var move_cycle: int = 0
 signal my_global_signal(x,y,dir)
 signal upgrade_global_signal(x,y)
 
-
 var x_of_interest: int
 var y_of_interest: int
 var direction_of_interest: Vector2

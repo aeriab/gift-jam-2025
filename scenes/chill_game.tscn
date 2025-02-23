@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://png5xwsvvejc"]
+[gd_scene load_steps=5 format=3 uid="uid://cpjqwv1syqh3p"]
 
 [ext_resource type="Texture2D" uid="uid://cxv0dyocoj732" path="res://assets/GreyGridBackground.png" id="1_e0b1p"]
 [ext_resource type="Script" path="res://scripts/tile_spawner.gd" id="2_bqqsl"]

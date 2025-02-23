@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://bhooiw2poj7f1"]
+
+[ext_resource type="Script" path="res://Clark Stuff 1/BouncyScene.gd" id="1_boxvb"]
+[ext_resource type="PhysicsMaterial" uid="uid://b0o1ia0a4eq84" path="res://Clark Stuff 1/BouncePhysicsMat.tres" id="2_kobgm"]
+[ext_resource type="Script" path="res://Clark Stuff 1/sector_bouncy.gd" id="3_xv4vj"]
+[ext_resource type="PackedScene" uid="uid://dd3ds5qu477ro" path="res://Clark Stuff 1/sector.tscn" id="4_41eb6"]
+[ext_resource type="PackedScene" uid="uid://ditgvobqixnme" path="res://Clark Stuff 1/ball.tscn" id="5_elv0h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qstrg"]
+radius = 168.003
+
+[node name="CircleBounce" type="Node2D" node_paths=PackedStringArray("n_gon_gen")]
+script = ExtResource("1_boxvb")
+physics_material = ExtResource("2_kobgm")
+n_gon_gen = NodePath("Sectors")
+metadata/CircleBounce = false
+
+[node name="Sectors" type="Node2D" parent="."]
+script = ExtResource("3_xv4vj")
+polygon_scene = ExtResource("4_41eb6")
+radius_increment = 20.0
+sector_size = 0.5
+
+[node name="Ball" parent="." instance=ExtResource("5_elv0h")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Area2D" type="Area2D" parent="Control"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Area2D"]
+shape = SubResource("CircleShape2D_qstrg")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
+[connection signal="mouse_exited" from="Control" to="." method="_on_control_mouse_exited"]

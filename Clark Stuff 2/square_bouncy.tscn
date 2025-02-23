@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5g4fjyrenwtc"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://dygucv7noqjw2" path="res://Clark Stuff 2/BouncePhysicsMat.tres" id="1_db675"]
+
+[sub_resource type="Gradient" id="Gradient_iyuhf"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ea824"]
+gradient = SubResource("Gradient_iyuhf")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81a1o"]
+size = Vector2(63, 64)
+
+[node name="SquareBouncy" type="RigidBody2D"]
+physics_material_override = ExtResource("1_db675")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_ea824")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_81a1o")

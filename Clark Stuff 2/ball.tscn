@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://e43b7iv56suf"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://dygucv7noqjw2" path="res://Clark Stuff 2/BouncePhysicsMat.tres" id="1_l2l7n"]
+[ext_resource type="Script" path="res://Clark Stuff 1/ball.gd" id="2_yde4t"]
+[ext_resource type="AudioStream" uid="uid://b0mo8e1wgxnvl" path="res://Clark Stuff 1/hit.mp3" id="3_kdrcm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3nb50"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_hp1k4"]
+
+[sub_resource type="Gradient" id="Gradient_mwo7p"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hpew8"]
+gradient = SubResource("Gradient_mwo7p")
+
+[node name="Ball" type="RigidBody2D"]
+physics_material_override = ExtResource("1_l2l7n")
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("2_yde4t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3nb50")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_hp1k4")
+texture = SubResource("GradientTexture2D_hpew8")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_kdrcm")
+pitch_scale = 0.5
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
