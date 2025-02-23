@@ -13,3 +13,4 @@ func _on_pressed():
 	get_tree().paused = false
 	player.restart()
 	grey_grid.restart()
+	print("made here")

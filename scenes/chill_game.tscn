@@ -61,6 +61,7 @@ text = "GAME OVER"
 horizontal_alignment = 1
 
 [node name="RestartButton" type="Button" parent="."]
+process_mode = 3
 z_index = 5
 offset_left = -264.0
 offset_top = 634.0
