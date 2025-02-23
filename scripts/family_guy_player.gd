@@ -1,31 +1,44 @@
-extends Control
-const FAMILY_GUY = preload("res://assets/family_guy_clips/family_guy.ogv")
+extends Node2D
 
-@onready var video_stream_player: VideoStreamPlayer = $RigidBody2D/VideoStreamPlayer
+@onready var family_guy: VideoStreamPlayer = $RigidBody2D/FamilyGuy
+@onready var subway_surfers: VideoStreamPlayer = $RigidBody2D/SubwaySurfers
+@onready var minecraft_parkour: VideoStreamPlayer = $RigidBody2D/MinecraftParkour
 
+@onready var clips = [family_guy, subway_surfers, minecraft_parkour]
+
+var clip_idx = 0
+
+
+@onready var rigid_body = $RigidBody2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	video_stream_player.stream = FAMILY_GUY
-	video_stream_player.play()
+	# Ensure randomness by seeding (only needed once in _ready or earlier)
+	randomize()
+
+	clip_idx = randi() % clips.size()
+	# Pick a random element
+	var clip = clips[clip_idx]
+	clip.show()
+	clip.paused = false
+
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
+func _physics_process(delta: float) -> void:
+	if rigid_body.get_contact_count() > 0:
+		rigid_body.angular_velocity += randf()
+		
+		var r = randf()
 
-func _on_rigid_body_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	print(event)
-	if event is InputEventMouse:
-		print("asdf")
+		if r < 0.5:
+			clips[clip_idx].hide()
+			clips[clip_idx].paused = true
 
+			clip_idx = randi() % clips.size()
 
-
-
-func _on_video_stream_player_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.pressed and event.button_index == 1:
-			print("asdf")
-			print()
-			video_stream_player.stop()
-			video_stream_player.stream_position = 1000*randf()
-			video_stream_player.play()
+			var clip = clips[clip_idx]
+			clip.show()
+			clip.paused = false

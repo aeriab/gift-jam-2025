@@ -24,7 +24,12 @@ func _on_rot_buy_pressed() -> void:
 	
 	Globals.increase_points(-rot_cost)
 	
-	rot_cost = rot_cost * 2
+	rot_array[rot_level].process_mode = Node.PROCESS_MODE_INHERIT
+	rot_array[rot_level].set_visible(true)
+	
+	rot_level += 1
+	
+	rot_cost = rot_cost * 10
 	
 	rot_buy.text = "BUY ROT: " + str(rot_cost) + " points"
 	
