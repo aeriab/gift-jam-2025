@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbbskghw38rs6"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_ccr3x"]
+[ext_resource type="PackedScene" path="res://scenes/cookieClicker.tscn" id="2_ewoid"]
+[ext_resource type="PackedScene" uid="uid://e417cm21gddk" path="res://scenes/family_guy_player.tscn" id="3_lv7n4"]
+[ext_resource type="PackedScene" uid="uid://bhooiw2poj7f1" path="res://Clark Stuff 1/clark_scene.tscn" id="4_2fpj8"]
+[ext_resource type="PackedScene" uid="uid://cw1wdc7k57b5r" path="res://Clark Stuff 2/clarktest2.tscn" id="5_8xv74"]
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("point_counter")]
+script = ExtResource("1_ccr3x")
+point_counter = NodePath("CanvasLayer/PointCounter")
+
+[node name="FamilyGuyPlayer" parent="." instance=ExtResource("3_lv7n4")]
+
+[node name="CookieClicker" parent="." instance=ExtResource("2_ewoid")]
+
+[node name="CircleBounce" parent="." instance=ExtResource("4_2fpj8")]
+position = Vector2(956, 200)
+
+[node name="Clarktest2" parent="." instance=ExtResource("5_8xv74")]
+position = Vector2(368, 474)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PointCounter" type="RichTextLabel" parent="CanvasLayer"]
+offset_top = -1.0
+offset_right = 200.0
+offset_bottom = 59.0
+theme_override_font_sizes/normal_font_size = 40
+text = "Points: 0"

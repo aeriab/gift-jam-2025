@@ -11,6 +11,8 @@ gradient = SubResource("Gradient_iyuhf")
 size = Vector2(63, 64)
 
 [node name="SquareBouncy" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 8
 physics_material_override = ExtResource("1_db675")
 contact_monitor = true
 max_contacts_reported = 1

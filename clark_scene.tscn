@@ -1,10 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bod8gr6ebn7i1"]
+[gd_scene load_steps=10 format=3 uid="uid://boq4wnl6us3y0"]
 
-[ext_resource type="Script" path="res://BouncyScene.gd" id="1_1d580"]
-[ext_resource type="Script" path="res://Clark Stuff/sector_bouncy.gd" id="1_v4jem"]
-[ext_resource type="PackedScene" path="res://Clark Stuff/sector.tscn" id="2_xdf0f"]
-[ext_resource type="PhysicsMaterial" path="res://Clark Stuff/BouncePhysicsMat.tres" id="3_kh8eo"]
-[ext_resource type="Script" path="res://Clark Stuff/ball.gd" id="5_m64u0"]
+[ext_resource type="Script" path="res://Clark Stuff 1/BouncyScene.gd" id="1_1d580"]
+[ext_resource type="Script" path="res://Clark Stuff 1/sector_bouncy.gd" id="1_v4jem"]
+[ext_resource type="PackedScene" uid="uid://dd3ds5qu477ro" path="res://Clark Stuff 1/sector.tscn" id="2_xdf0f"]
+[ext_resource type="PhysicsMaterial" uid="uid://b0o1ia0a4eq84" path="res://Clark Stuff 1/BouncePhysicsMat.tres" id="3_kh8eo"]
+[ext_resource type="Script" path="res://Clark Stuff 1/ball.gd" id="5_m64u0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3nb50"]
 
@@ -21,8 +21,6 @@ physics_material = ExtResource("3_kh8eo")
 n_gon_gen = NodePath("Sectors")
 metadata/CircleBounce = false
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="Sectors" type="Node2D" parent="."]
 script = ExtResource("1_v4jem")
 polygon_scene = ExtResource("2_xdf0f")
@@ -30,6 +28,8 @@ radius_increment = 20.0
 sector_size = 0.5
 
 [node name="Ball" type="RigidBody2D" parent="."]
+collision_layer = 4
+collision_mask = 4
 physics_material_override = ExtResource("3_kh8eo")
 script = ExtResource("5_m64u0")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://4id2fgqtvgop"]
+[gd_scene load_steps=9 format=3 uid="uid://e417cm21gddk"]
 
 [ext_resource type="Script" path="res://scripts/family_guy_player.gd" id="1_loo82"]
 [ext_resource type="VideoStream" path="res://assets/family_guy_clips/family_guy.ogv" id="2_n5u4l"]

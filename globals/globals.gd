@@ -1,7 +1,12 @@
 extends Node
 
+signal points_changed
 @export var points: int = 0
 
+func increase_points(amt):
+	points += amt
+	points_changed.emit()
+	
 var matrix=[[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]
 var player_pos=Vector2(-337.5,-337.5)
 var player_moved="down"
