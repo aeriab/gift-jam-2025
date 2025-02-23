@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ev2tvusu0pvy"]
-
-[ext_resource type="Texture2D" uid="uid://p7c41idgmpdo" path="res://assets/emoji_tiles/7_barf_tile.png" id="1_046ba"]
-
-[node name="tile_7" type="Sprite2D"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_046ba")

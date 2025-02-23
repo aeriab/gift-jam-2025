@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cl18tbmeurux1"]
-
-[ext_resource type="Texture2D" uid="uid://e12bru71jk6w" path="res://assets/emoji_tiles/2_toxic_tile.png" id="1_nolqx"]
-
-[node name="tile_2" type="Sprite2D"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_nolqx")

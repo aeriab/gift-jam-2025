@@ -3,7 +3,7 @@ extends Sprite2D
 var tile_array = []
 @onready var score = $"../Score"
 
-var tile_1 = preload("res://scenes/tile_scenes/tile_1.tscn")
+var tile_1 = preload("res://scenes/tile_1.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
