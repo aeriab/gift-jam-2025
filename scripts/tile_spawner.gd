@@ -96,6 +96,7 @@ func push_boxes(box_row, box_col, direction):
 	if Globals.matrix[next_col][next_row] >= 1:
 		if !push_boxes(next_row, next_col, direction):
 			if Globals.matrix[next_col][next_row] == Globals.matrix[box_col][box_row]:
+				Globals.increase_points(pow(2,Globals.matrix[next_col][next_row] + 1))
 				Globals.tell_box_to_move(box_row,box_col,direction)
 				Globals.tell_box_to_upgrade(next_row,next_col)
 				Globals.matrix[next_col][next_row] = Globals.matrix[next_col][next_row] + 1
