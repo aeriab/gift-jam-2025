@@ -8,6 +8,9 @@ extends Node2D
 @export var max_angular_offset: float = 0.1  # how much to offset 0-1
 @export var sector_size: float = 0.1  # how much to offset 0-1
 @export var num_sides: float = 100  # how much to offset 0-1
+
+
+@export var radius=initial_radius
 func _ready():
 	generate_loops()
 
