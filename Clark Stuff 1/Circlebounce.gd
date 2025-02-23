@@ -17,7 +17,7 @@ func _process(delta):
 	rotation += angular_speed * delta  # Keeps the shape rotating around its center
 	var ball = get_parent().get_parent().find_child("Ball")
 	if ball:
-		if (ball.position.length()>radius):
+		if (ball.position.length()>radius+10):
 			get_parent().num_loops-=1
 			queue_free()  # 🚀 Remove this sector when the ball leaves
 
