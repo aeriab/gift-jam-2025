@@ -1,6 +1,7 @@
 extends Sprite2D
 
 var tile_array = []
+@onready var score = $"../Score"
 
 var tile_1 = preload("res://scenes/tile_scenes/tile_1.tscn")
 
@@ -38,20 +39,24 @@ func restart():
 	Globals.move_cycle = 6
 
 @onready var color_rect = $"../ColorRect"
+@onready var game_over_label = $"../GameOverLabel"
 
 func generate_tile():
 	var rand_open_tile = get_random_vector2(find_zero_positions(Globals.matrix))
 	if rand_open_tile == Vector2(0,0):
 		get_tree().paused = true
 		color_rect.visible = true
+		game_over_label = true
 		print("GAME OVER")
 	var game_is_over = true
 	for i in range(4):
 		for j in range(4):
+			print(Globals.matrix[i+1][j+1])
 			if Globals.matrix[i+1][j+1] == 0:
 				game_is_over = false
 	
 	if game_is_over:
+		game_over_label = true
 		get_tree().paused = true
 		color_rect.visible = true
 		print("GAME OVER")
@@ -108,6 +113,7 @@ func push_boxes(box_row, box_col, direction):
 		if !push_boxes(next_row, next_col, direction):
 			if Globals.matrix[next_col][next_row] == Globals.matrix[box_col][box_row]:
 				Globals.increase_points(pow(2,Globals.matrix[next_col][next_row] + 1))
+				score.text = "Score: " + str(Globals.points)
 				Globals.tell_box_to_move(box_row,box_col,direction)
 				Globals.tell_box_to_upgrade(next_row,next_col)
 				Globals.matrix[next_col][next_row] = Globals.matrix[next_col][next_row] + 1
