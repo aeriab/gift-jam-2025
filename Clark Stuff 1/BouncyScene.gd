@@ -50,9 +50,9 @@ func randomize_physics():
 func randomize_n_gon_parameters():
 	if n_gon_gen:
 		n_gon_gen.num_loops = randi_range(5, 20)  # Random sides (triangle to dodecagon)
-		n_gon_gen.initial_radius = 100#randf_range(50.0, 200.0)  # Random polygon size
+		n_gon_gen.initial_radius = 50#randf_range(50.0, 200.0)  # Random polygon size
 		n_gon_gen.num_sides=100
-		n_gon_gen.radius_increment = randf_range(5,20)  # Random polygon size
+		n_gon_gen.radius_increment = (200-n_gon_gen.initial_radius)/n_gon_gen.num_loops  # Random polygon size
 		n_gon_gen.angular_speed = randf_range(0.1, 5)  # Random rotation speed
 		n_gon_gen.max_angular_offset = randi_range(0, TAU/12)
 		n_gon_gen.sector_size = randf_range(0.15, 0.5)

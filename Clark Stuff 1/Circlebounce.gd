@@ -16,7 +16,7 @@ func _process(delta):
 	var ball = get_parent().get_parent().find_child("Ball")
 	if ball:
 		if ((ball.position-get_parent().position).length()>radius+10):
-			Globals.increase_points(0.5)
+			Globals.increase_points(0.25)
 			get_parent().num_loops-=1
 			queue_free()  # 🚀 Remove this sector when the ball leaves
 

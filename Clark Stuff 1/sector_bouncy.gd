@@ -2,7 +2,7 @@ extends Node2D
 
 @export var polygon_scene: PackedScene  # Assign your existing n-gon scene here
 @export var num_loops: int = 5  # Number of polygon layers
-@export var initial_radius: float = 100.0  # Starting size of the first loop
+@export var initial_radius: float = 50.0  # Starting size of the first loop
 @export var radius_increment: float = 30.0  # How much larger each loop gets
 @export var angular_speed: float = 2.0  # Rotation speed of each polygon
 @export var max_angular_offset: float = 0.1  # how much to offset 0-1
