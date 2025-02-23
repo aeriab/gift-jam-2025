@@ -12,6 +12,11 @@ const _5_DEMON_TILE = preload("res://assets/emoji_tiles/5_demon_tile.png")
 const _6_BLUE_SKULL_TILE = preload("res://assets/emoji_tiles/6_blue_skull_tile.png")
 const _7_BARF_TILE = preload("res://assets/emoji_tiles/7_barf_tile.png")
 const _8_MONEY_TILE = preload("res://assets/emoji_tiles/8_money_tile.png")
+const _9_COFFEE_TILE = preload("res://assets/emoji_tiles/9_coffee_tile.png")
+const _10_COOL_TILE = preload("res://assets/emoji_tiles/10_cool_tile.png")
+const _11_DOG_TILE = preload("res://assets/emoji_tiles/11_dog_tile.png")
+const _12_GHOST_TILE = preload("res://assets/emoji_tiles/12_ghost_tile.png")
+
 
 const FOLLOW_SPEED = 8.0
 
@@ -59,7 +64,7 @@ func _process(delta):
 		texture = _1_ANGEL_TILE
 		label.text = "2"
 	elif size == 2:
-		texture = _2_TOXIC_TILE
+		texture = _7_BARF_TILE
 		label.text = "4"
 	elif size == 3:
 		texture = _3_COWBOY_TILE
@@ -74,11 +79,29 @@ func _process(delta):
 		texture = _6_BLUE_SKULL_TILE
 		label.text = "64"
 	elif size == 7:
-		texture = _7_BARF_TILE
+		texture = _2_TOXIC_TILE
 		label.text = "128"
 	elif size == 8:
 		texture = _8_MONEY_TILE
 		label.text = "256"
+	elif size == 9:
+		texture = _9_COFFEE_TILE
+		label.text = "512"
+	elif size == 10:
+		texture = _10_COOL_TILE
+		label.text = "1024"
+	elif size == 11:
+		texture = _11_DOG_TILE
+		label.text = "2048"
+	elif size == 12:
+		texture = _12_GHOST_TILE
+		label.text = "4096"
+	elif size == 13:
+		label.text = "8192"
+	elif size == 14:
+		label.text = "16384"
+	elif size >= 15:
+		label.text = "32768"
 	
 	position = position.lerp(desired_pos, delta * FOLLOW_SPEED)
 

@@ -9,6 +9,10 @@
 
 [node name="chillGame" type="Node2D"]
 
+[node name="GreyGrid" type="Sprite2D" parent="."]
+texture = ExtResource("1_e0b1p")
+script = ExtResource("2_bqqsl")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.4, 0.4)
 
@@ -26,10 +30,6 @@ script = ExtResource("3_rjsnb")
 [node name="Gift-jam-player" type="Sprite2D" parent="Player"]
 scale = Vector2(0.26, 0.26)
 texture = ExtResource("3_j6dm8")
-
-[node name="GreyGrid" type="Sprite2D" parent="."]
-texture = ExtResource("1_e0b1p")
-script = ExtResource("2_bqqsl")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
