@@ -2,6 +2,8 @@ extends RigidBody2D
 
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @export var ball_prob = 0.1
+@export var start_rad = 100
+@export var max_rad = 500
 @export var random_force = 0.1
 
 func apply_random_force():
@@ -21,7 +23,8 @@ func reset():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if (get_parent().initial_radius>500):
+	if (get_parent().initial_radius>max_rad):
+		#get_parent().initial_radius = start_rad
 		queue_free()
 
 func _physics_process(delta: float) -> void:
@@ -34,6 +37,7 @@ func _physics_process(delta: float) -> void:
 		var rng = RandomNumberGenerator.new()
 		var my_random_number = rng.randf_range(0, 1.0)
 		if my_random_number<ball_prob:
+			Globals.increase_points(1)
 			self.get_parent().add_child(dup)
 		#initialize()
 	#for node in get_colliding_bodies():
