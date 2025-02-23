@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://boq4wnl6us3y0"]
+[gd_scene load_steps=10 format=3 uid="uid://bod8gr6ebn7i1"]
 
 [ext_resource type="Script" path="res://Clark Stuff 1/BouncyScene.gd" id="1_1d580"]
 [ext_resource type="Script" path="res://Clark Stuff 1/sector_bouncy.gd" id="1_v4jem"]
