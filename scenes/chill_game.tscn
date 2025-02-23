@@ -87,6 +87,7 @@ volume_db = -20.0
 pitch_scale = 1.3
 
 [node name="GreyGrid" type="Sprite2D" parent="."]
+texture_filter = 2
 texture = ExtResource("1_e0b1p")
 script = ExtResource("2_bqqsl")
 
