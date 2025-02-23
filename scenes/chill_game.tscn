@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpjqwv1syqh3p"]
+[gd_scene load_steps=6 format=3 uid="uid://png5xwsvvejc"]
 
 [ext_resource type="Texture2D" uid="uid://cxv0dyocoj732" path="res://assets/GreyGridBackground.png" id="1_e0b1p"]
 [ext_resource type="Script" path="res://scripts/tile_spawner.gd" id="2_bqqsl"]
 [ext_resource type="Texture2D" uid="uid://xlm1fotcd2es" path="res://assets/gift-jam-player.png" id="3_j6dm8"]
 [ext_resource type="Script" path="res://scripts/chill_player.gd" id="3_rjsnb"]
+[ext_resource type="Script" path="res://scripts/restart_button.gd" id="5_nocda"]
 
 [node name="chillGame" type="Node2D"]
 
@@ -16,14 +17,26 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="GreyGrid" type="Sprite2D" parent="."]
-texture = ExtResource("1_e0b1p")
-script = ExtResource("2_bqqsl")
-
 [node name="Player" type="Node2D" parent="."]
+z_index = 1
 position = Vector2(-337.5, -337.5)
 script = ExtResource("3_rjsnb")
 
 [node name="Gift-jam-player" type="Sprite2D" parent="Player"]
 scale = Vector2(0.26, 0.26)
 texture = ExtResource("3_j6dm8")
+
+[node name="GreyGrid" type="Sprite2D" parent="."]
+texture = ExtResource("1_e0b1p")
+script = ExtResource("2_bqqsl")
+
+[node name="RestartButton" type="Button" parent="."]
+offset_left = -264.0
+offset_top = 634.0
+offset_right = 266.0
+offset_bottom = 809.0
+theme_override_font_sizes/font_size = 110
+text = "Restart"
+script = ExtResource("5_nocda")
+
+[connection signal="pressed" from="RestartButton" to="RestartButton" method="_on_pressed"]
