@@ -19,16 +19,14 @@ func _process(delta: float) -> void:
 
 
 func _on_button_pressed() -> void:
-	Globals.points += 1
+	Globals.increase_points(1)
 	var tween = get_tree().create_tween().set_parallel()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_CUBIC)
 	
-
-	
 	var xPos = randf_range(xMin, xMax)
 	var yPos = randf_range(yMin, yMax)
-	var scale = randf_range(0.01,0.1)
+	var scale = randf_range(0.01,0.05)
 	
 	tween.tween_property(
 	button,
