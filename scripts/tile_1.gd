@@ -31,25 +31,30 @@ func near_player_pos():
 	return ((Globals.player_pos.x <= desired_pos.x + 20 and Globals.player_pos.x >= desired_pos.x - 20) and (Globals.player_pos.y <= desired_pos.y + 20 and Globals.player_pos.y >= desired_pos.y - 20))
 
 func _process(delta):
+	if (normed_pos.x == Globals.x_of_interest and normed_pos.y == Globals.y_of_interest):
+		desired_pos.y -= 225 * Globals.direction_of_interest.y
+		desired_pos.x += 225 * Globals.direction_of_interest.x
+		Globals.x_of_interest = -69420
+		Globals.y_of_interest = -69420
 	
-	if near_player_pos():
-		if Globals.player_moved == "up":
-			print(get_parent().push_boxes(normed_pos.y, normed_pos.x, Vector2(0,1)))
-			if desired_pos.y > -300:
-				desired_pos.y -= 225
-				new_norm_pos()
-		if Globals.player_moved == "down":
-			if desired_pos.y < 300:
-				desired_pos.y += 225
-				new_norm_pos()
-		if Globals.player_moved == "left":
-			if desired_pos.x > -300:
-				desired_pos.x -= 225
-				new_norm_pos()
-		if Globals.player_moved == "right":
-			if desired_pos.x < 300:
-				desired_pos.x += 225
-				new_norm_pos()
+	#if near_player_pos():
+		#if Globals.player_moved == "up":
+			##print(get_parent().push_boxes(normed_pos.y, normed_pos.x, Vector2(0,1)))
+			#if desired_pos.y > -300:
+				#desired_pos.y -= 225
+				#new_norm_pos()
+		#if Globals.player_moved == "down":
+			#if desired_pos.y < 300:
+				#desired_pos.y += 225
+				#new_norm_pos()
+		#if Globals.player_moved == "left":
+			#if desired_pos.x > -300:
+				#desired_pos.x -= 225
+				#new_norm_pos()
+		#if Globals.player_moved == "right":
+			#if desired_pos.x < 300:
+				#desired_pos.x += 225
+				#new_norm_pos()
 	
 	position = position.lerp(desired_pos, delta * FOLLOW_SPEED)
 

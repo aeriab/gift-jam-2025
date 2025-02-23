@@ -26,7 +26,7 @@ func spawn_tile(size, x, y):
 	tile.x = x
 	tile.y = y
 	add_child(tile)
-	Globals.matrix[y][x] = size
+	#Globals.matrix[y][x] = size
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,29 +39,32 @@ func _process(delta):
 		#print(" ")
 		#print(" ")
 		#print(" ")
-		#print(" ")
-		#print(Globals.matrix[0])
-		#print(Globals.matrix[1])
-		#print(Globals.matrix[2])
-		#print(Globals.matrix[3])
-		#print(Globals.matrix[4])
-		#print(Globals.matrix[5])
-		#print(" ")
+		print(" ")
+		print(Globals.matrix[0])
+		print(Globals.matrix[1])
+		print(Globals.matrix[2])
+		print(Globals.matrix[3])
+		print(Globals.matrix[4])
+		print(Globals.matrix[5])
+		print(" ")
 
 func push_boxes(box_row, box_col, direction):
 	var delta_row = direction.x
 	var delta_col = direction.y
 	var next_row = box_row + delta_row
-	var next_col = box_col + delta_col
+	var next_col = box_col - delta_col
 	
 	if !(1 <= next_row and next_row < len(Globals.matrix) - 1 and 1 <= next_col and next_col < len(Globals.matrix[0]) - 1):
 		return false
-	if Globals.matrix[next_row][next_col] >= 1:
+	if Globals.matrix[next_col][next_row] >= 1:
 		if !push_boxes(next_row, next_col, direction):
 			return false
 	
-	Globals.matrix[next_row][next_col] = 1
-	Globals.matrix[box_row][box_col] = 0
+	Globals.matrix[next_col][next_row] = 1
+	Globals.matrix[box_col][box_row] = 0
+	
+	Globals.tell_box_to_move(box_row,box_col,direction)
+	
 	return true
 
 func move_player(player_row, player_col, direction):
@@ -73,14 +76,15 @@ func move_player(player_row, player_col, direction):
 	if !(0 <= next_row and next_row < len(Globals.matrix) and 0 <= next_col and next_col < len(Globals.matrix[0])):
 		return false
 	
-	if Globals.matrix[next_row][next_col] >= 1:
+	if Globals.matrix[next_col][next_row] >= 1:
+		print("box ahead!!")
 		if push_boxes(next_row, next_col, direction):
-			Globals.matrix[player_row][player_col] = 0
-			Globals.matrix[next_row][next_col] = -1
+			Globals.matrix[player_col][player_row] = 0
+			Globals.matrix[next_col][next_row] = -1
 			return true
 		else:
 			return false
 	
-	Globals.matrix[player_row][player_col] = 0
-	Globals.matrix[next_row][next_col] = -1
+	Globals.matrix[player_col][player_row] = 0
+	Globals.matrix[next_col][next_row] = -1
 	return true
