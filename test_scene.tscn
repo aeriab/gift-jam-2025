@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene format=3 uid="uid://v8opmjqyb0qx"]
+=======
+[gd_scene format=3 uid="uid://ba2gu3tkr7ufr"]
+>>>>>>> f927b34 (ball)
 
 [node name="test_scene" type="Node2D"]
 

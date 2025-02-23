@@ -3,15 +3,23 @@ extends Node2D
 @export var physics_material: PhysicsMaterial  # Assign the material in Inspector
 @export var n_gon_gen: Node2D  # Assign the parent rotating n-gon
 
-@export var force_magnitude: float = 300.0  # How strong the random push is
+@export var force_magnitude: float = 200.0  # How strong the random push is
+
+var touch
 
 func _ready():
+	touch=true
 	#randomize_physics()
 	#randomize_n_gon_parameters()
 	apply_random_force()
 	
 func _process(diff):
 	var ball = find_child("Ball")
+	if Input.is_action_just_pressed("mouse_click"):
+		#print("FORCE")
+		if touch:
+			print("FORCE")
+			apply_random_force()
 	if ball!=null:
 		#print("RERUN")
 		if n_gon_gen.num_loops==0:# or ball.position.y>1500:
@@ -26,10 +34,10 @@ func reset():
 			
 func apply_random_force():
 	var random_direction = Vector2.RIGHT.rotated(randf_range(0, TAU))  # Any random direction
-	var velocity_boost = random_direction * force_magnitude
+	#var velocity_boost = random_direction * force_magnitude
 	var ball = find_child("Ball")
 	if ball:
-		ball.linear_velocity += velocity_boost  # Apply the force to the ball
+		ball.linear_velocity += ball.linear_velocity.normalized()*force_magnitude  # Apply the force to the ball
 
 func randomize_physics():
 	if physics_material:
@@ -48,3 +56,15 @@ func randomize_n_gon_parameters():
 		n_gon_gen.max_angular_offset = randi_range(0, TAU/12)
 		n_gon_gen.sector_size = randf_range(0.15, 0.5)
 		print(n_gon_gen.sector_size)
+
+
+func _on_control_mouse_entered() -> void:
+	print('enter')
+	touch=true
+	pass # Replace with function body.
+
+
+func _on_control_mouse_exited() -> void:
+	#print(touch)
+	touch=false
+	pass # Replace with function body.
