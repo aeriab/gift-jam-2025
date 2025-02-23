@@ -12,13 +12,13 @@
 script = ExtResource("1_ccr3x")
 point_counter = NodePath("CanvasLayer/PointCounter")
 rot_buy = NodePath("CanvasLayer/RotBuy")
-rot_array = [NodePath("CanvasLayer2/chillGame"), NodePath("CanvasLayer2/CircleBounce"), NodePath("CanvasLayer2/Clarktest2"), null]
+rot_array = [NodePath("CanvasLayer2/chillGame"), NodePath("CanvasLayer2/CircleBounce"), NodePath("CanvasLayer2/Clarktest2")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PointCounter" type="RichTextLabel" parent="CanvasLayer"]
 offset_top = -1.0
-offset_right = 200.0
+offset_right = 428.0
 offset_bottom = 59.0
 theme_override_font_sizes/normal_font_size = 40
 text = "Points: 0"
@@ -37,20 +37,22 @@ script = ExtResource("2_4vrlu")
 [node name="FamilyGuyPlayer" parent="CanvasLayer2" instance=ExtResource("3_lv7n4")]
 
 [node name="CircleBounce" parent="CanvasLayer2" instance=ExtResource("4_2fpj8")]
+process_mode = 4
 visible = false
 position = Vector2(939, 381)
 
 [node name="Clarktest2" parent="CanvasLayer2" instance=ExtResource("5_8xv74")]
+process_mode = 4
 visible = false
 position = Vector2(228, 396)
 
 [node name="chillGame" parent="CanvasLayer2" instance=ExtResource("6_prnig")]
+process_mode = 4
 visible = false
 position = Vector2(575, 305)
 scale = Vector2(0.25, 0.25)
 
 [node name="CookieClicker" parent="CanvasLayer2" instance=ExtResource("2_ewoid")]
-visible = false
 
 [connection signal="pressed" from="CanvasLayer/RotBuy" to="." method="_on_rot_buy_pressed"]
 

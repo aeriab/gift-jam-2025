@@ -6,6 +6,8 @@ signal points_changed
 func increase_points(amt):
 	points += amt
 	points_changed.emit()
+
+
 	
 var matrix=[[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]
 var player_pos=Vector2(-337.5,-337.5)
