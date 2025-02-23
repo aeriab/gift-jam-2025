@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://4id2fgqtvgop"]
+[gd_scene load_steps=11 format=3 uid="uid://b367r1wx5xjcq"]
 
 [ext_resource type="Script" path="res://scripts/family_guy_player.gd" id="1_loo82"]
 [ext_resource type="VideoStream" path="res://assets/family_guy_clips/family_guy.ogv" id="2_n5u4l"]
+[ext_resource type="VideoStream" path="res://assets/family_guy_clips/subway_surfers.ogv" id="3_jsce1"]
+[ext_resource type="VideoStream" path="res://assets/family_guy_clips/parkour.ogv" id="4_biesw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qbmfd"]
-size = Vector2(256, 144)
+size = Vector2(194, 144)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sjqec"]
 friction = 0.0
@@ -21,32 +23,48 @@ normal = Vector2(1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_11vae"]
 normal = Vector2(-1, 0)
 
-[node name="FamilyGuyPlayer" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+[node name="FamilyGuyPlayer" type="Node2D"]
 script = ExtResource("1_loo82")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 position = Vector2(301, 112)
 gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
 linear_velocity = Vector2(300, 300)
 linear_damp_mode = 1
+angular_damp_mode = 1
 
-[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(97, 72)
+shape = SubResource("RectangleShape2D_qbmfd")
+
+[node name="FamilyGuy" type="VideoStreamPlayer" parent="RigidBody2D"]
+visible = false
 offset_right = 192.0
 offset_bottom = 144.0
 stream = ExtResource("2_n5u4l")
 autoplay = true
+paused = true
 loop = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(128, 72)
-shape = SubResource("RectangleShape2D_qbmfd")
+[node name="SubwaySurfers" type="VideoStreamPlayer" parent="RigidBody2D"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("3_jsce1")
+autoplay = true
+paused = true
+loop = true
+
+[node name="MinecraftParkour" type="VideoStreamPlayer" parent="RigidBody2D"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("4_biesw")
+autoplay = true
+paused = true
+loop = true
 
 [node name="TopBoundary" type="StaticBody2D" parent="."]
 position = Vector2(555, 0)
@@ -78,6 +96,3 @@ position = Vector2(1, 1)
 shape = SubResource("WorldBoundaryShape2D_11vae")
 
 [connection signal="input_event" from="RigidBody2D" to="." method="_on_rigid_body_2d_input_event"]
-[connection signal="mouse_entered" from="RigidBody2D" to="." method="_on_rigid_body_2d_mouse_entered"]
-[connection signal="gui_input" from="RigidBody2D/VideoStreamPlayer" to="." method="_on_video_stream_player_gui_input"]
-[connection signal="mouse_entered" from="RigidBody2D/VideoStreamPlayer" to="." method="_on_video_stream_player_mouse_entered"]
