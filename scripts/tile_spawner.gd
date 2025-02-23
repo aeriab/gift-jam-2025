@@ -9,36 +9,61 @@ func _ready():
 	generate_tile()
 	Globals.move_cycle = 1
 
-func generate_tile():
-	for i in range(2):
-		var random_x_start = randi_range(0,3)
-		var random_y_start = randi_range(0,3)
-		for y in range(6):
-			for x in range(6):
-				if y == random_y_start and x == random_x_start:
-					var tile_birth_size: int = randi_range(1,2)
-					spawn_tile(tile_birth_size,x,y)
-					print("birth: " + str(tile_birth_size) + " x: " + str(x) + " y: " + str(y))
+func find_zero_positions(matrix: Array) -> Array[Vector2]:
+	var zero_positions: Array[Vector2] = []
+	if matrix.is_empty():
+		return zero_positions
+	for y in range(matrix.size() - 2):
+		var row = matrix[y + 1]
+		if row is Array: # Check if the row is actually an array
+			for x in range(row.size() - 2):
+				if row[x + 1] == 0:
+					zero_positions.append(Vector2(x+1, y+1))
+	
+	return zero_positions
 
-func spawn_tile(size, x, y):
+func get_random_vector2(vector2_array: Array[Vector2]) -> Vector2:
+	if vector2_array.is_empty():
+		return Vector2(0, 0)  # Return a default Vector2 if the array is empty.
+	var random_index = randi() % vector2_array.size()
+	return vector2_array[random_index]
+
+
+func generate_tile():
+	var rand_open_tile = get_random_vector2(find_zero_positions(Globals.matrix))
+	if rand_open_tile == Vector2(0,0):
+		print("GAME OVER")
+	spawn_tile(randi_range(1,2), rand_open_tile)
+	#print(rand_open_tile)
+	#for i in range(1):
+		#var random_x_start = randi_range(0,3)
+		#var random_y_start = randi_range(0,3)
+		#for y in range(6):
+			#for x in range(6):
+				#if y == random_y_start and x == random_x_start:
+					#var tile_birth_size: int = randi_range(1,2)
+					#spawn_tile(tile_birth_size,x,y)
+					#print("birth: " + str(tile_birth_size) + " x: " + str(x) + " y: " + str(y))
+
+func spawn_tile(size, pos):
 	var tile = tile_1.instantiate()
 	tile.size = size
-	tile.x = x
-	tile.y = y
+	tile.x = pos.x - 1
+	tile.y = pos.y - 1
 	add_child(tile)
-	Globals.matrix[y+1][x+1] = size
+	Globals.matrix[pos.y][pos.x] = size
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Globals.move_cycle >= 1:
+	if Globals.move_cycle >= 6:
 		Globals.move_cycle = 0
-		#generate_tile()
-		#print(" ")
-		#print(" ")
-		#print(" ")
-		#print(" ")
-		#print(" ")
+		generate_tile()
+		##print(" ")
+		##print(" ")
+		##print(" ")
+		##print(" ")
+		##print(" ")
 		print(" ")
 		print(Globals.matrix[0])
 		print(Globals.matrix[1])
@@ -58,13 +83,19 @@ func push_boxes(box_row, box_col, direction):
 		return false
 	if Globals.matrix[next_col][next_row] >= 1:
 		if !push_boxes(next_row, next_col, direction):
-			return false
+			if Globals.matrix[next_col][next_row] == Globals.matrix[box_col][box_row]:
+				Globals.tell_box_to_move(box_row,box_col,direction)
+				Globals.tell_box_to_upgrade(next_row,next_col)
+				Globals.matrix[next_col][next_row] = Globals.matrix[next_col][next_row] + 1
+				return true
+			else:
+				return false
 	
-	Globals.matrix[next_col][next_row] = 1
+	Globals.matrix[next_col][next_row] = Globals.matrix[box_col][box_row]
 	Globals.matrix[box_col][box_row] = 0
 	
 	Globals.tell_box_to_move(box_row,box_col,direction)
-	print("telling x:" + str(box_row) + " y:" + str(box_col) + " to move: " + str(direction))
+	#print("telling x:" + str(box_row) + " y:" + str(box_col) + " to move: " + str(direction))
 	
 	return true
 
@@ -78,7 +109,6 @@ func move_player(player_row, player_col, direction):
 		return false
 	
 	if Globals.matrix[next_col][next_row] >= 1:
-		print("box ahead!!")
 		if push_boxes(next_row, next_col, direction):
 			Globals.matrix[player_col][player_row] = 0
 			Globals.matrix[next_col][next_row] = -1
