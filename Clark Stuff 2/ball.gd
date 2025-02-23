@@ -37,6 +37,7 @@ func _physics_process(delta: float) -> void:
 		var rng = RandomNumberGenerator.new()
 		var my_random_number = rng.randf_range(0, 1.0)
 		if my_random_number<ball_prob:
+			Globals.increase_points(1)
 			self.get_parent().add_child(dup)
 		#initialize()
 	#for node in get_colliding_bodies():

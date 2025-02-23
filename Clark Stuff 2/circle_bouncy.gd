@@ -3,7 +3,7 @@ extends Node2D
 @export var polygon_scene: PackedScene  # Assign your existing n-gon scene here
 @export var ball_scene: PackedScene  # Assign your existing n-gon scene here
 @export var initial_radius: float = 100.0  # Starting size of the first loop
-@export var max_radius: float = 150.0  # Starting size of the first loop
+@export var max_radius: float = 250.0  # Starting size of the first loop
 #@export var angular_speed: float = 2.0  # Rotation speed of each polygon
 #@export var sector_size: float = 0.1  # how much to offset 0-1
 @export var num_sides: float = 100  # how much to offset 0-1
