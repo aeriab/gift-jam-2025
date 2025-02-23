@@ -8,7 +8,6 @@ var player_moved="down"
 
 var move_cycle: int = 0
 
-
 var x_of_interest: int
 var y_of_interest: int
 var direction_of_interest: Vector2

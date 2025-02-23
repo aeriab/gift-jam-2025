@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://cck3ol6ehi8nw"]
+
+[ext_resource type="Script" path="res://scenes/cookie_clicker.gd" id="1_a8xpw"]
+[ext_resource type="Texture2D" uid="uid://wnkib8gowh8b" path="res://assets/button.png" id="1_fb4d5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0lheh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2msn0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_if5jj"]
+
+[node name="CookieClicker" type="Node2D" node_paths=PackedStringArray("button")]
+script = ExtResource("1_a8xpw")
+button = NodePath("Control/Button")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 565.0
+offset_top = 315.0
+offset_right = 605.0
+offset_bottom = 355.0
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 1
+offset_left = -430.0
+offset_top = -145.0
+offset_right = 2078.0
+offset_bottom = 2363.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/icon_hover_color = Color(0.898039, 0, 0, 1)
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0lheh")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_2msn0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_if5jj")
+icon = ExtResource("1_fb4d5")
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
