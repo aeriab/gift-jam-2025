@@ -45,6 +45,17 @@ func generate_tile():
 		get_tree().paused = true
 		color_rect.visible = true
 		print("GAME OVER")
+	var game_is_over = true
+	for i in range(4):
+		for j in range(4):
+			if Globals.matrix[i+1][j+1] == 0:
+				game_is_over = false
+	
+	if game_is_over:
+		get_tree().paused = true
+		color_rect.visible = true
+		print("GAME OVER")
+	
 	spawn_tile(randi_range(1,2), rand_open_tile)
 	#print(rand_open_tile)
 	#for i in range(1):
