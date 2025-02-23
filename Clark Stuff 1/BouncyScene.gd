@@ -20,9 +20,10 @@ func _process(diff):
 		if touch:
 			print("FORCE")
 			apply_random_force()
+	#print(ball)
 	if ball!=null:
-		#print("RERUN")
-		if n_gon_gen.num_loops==0:# or ball.position.y>1500:
+		print("RERUN")
+		if n_gon_gen.num_loops==0 or ball.position.y>1500:
 			reset()
 func reset():
 	var ball = find_child("Ball")

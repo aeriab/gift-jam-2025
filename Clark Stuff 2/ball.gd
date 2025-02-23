@@ -27,7 +27,8 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	#print(len(get_colliding_bodies()))
 	#print(get_parent().initial_radius)
-	if (position.length()>get_parent().initial_radius-15):
+	#if ((position-get_parent().position).length()>get_parent().initial_radius-15):
+	if ((position).length()>get_parent().initial_radius-15):
 		get_parent().initial_radius+=1
 		var dup = self.duplicate()
 		var rng = RandomNumberGenerator.new()

@@ -4,8 +4,6 @@ extends Node2D
 @export var num_sides: int = 6  # Number of sides (default hexagon)
 @export var radius: float = 100.0  # Distance from center to square centers
 @export var angular_speed: float = 2.0  # Rotation speed in radians per second
-@export var collision_layer: int = 1  # Layer for the squares
-@export var collision_mask: int = 2  # Mask for detecting collisions
 
 func _ready():
 	generate_ngon()
@@ -38,8 +36,5 @@ func generate_ngon():
 			
 			# Prevent the squares from moving freely
 			square.freeze = true  # 🚀 LOCK POSITION
-			
-			square.set_collision_layer(collision_layer)
-			square.set_collision_mask(collision_mask)  # Only collides with the circle
 			
 			add_child(square)

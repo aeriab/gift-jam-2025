@@ -22,6 +22,7 @@ radius_increment = 20.0
 sector_size = 0.5
 
 [node name="Ball" parent="." instance=ExtResource("5_elv0h")]
+max_contacts_reported = 2
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -33,8 +34,6 @@ offset_bottom = 40.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Area2D"]
 shape = SubResource("CircleShape2D_qstrg")
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
 [connection signal="mouse_exited" from="Control" to="." method="_on_control_mouse_exited"]

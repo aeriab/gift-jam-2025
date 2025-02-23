@@ -8,5 +8,3 @@
 script = ExtResource("1_p4k5t")
 polygon_scene = ExtResource("2_kpiqx")
 ball_scene = ExtResource("1_ksubh")
-
-[node name="Camera2D" type="Camera2D" parent="."]
