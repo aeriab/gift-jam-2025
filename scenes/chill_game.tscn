@@ -1,13 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://png5xwsvvejc"]
+[gd_scene load_steps=15 format=3 uid="uid://png5xwsvvejc"]
 
+[ext_resource type="AudioStream" uid="uid://bvvwgmc3apq8b" path="res://assets/lovely_music_cropped.mp3" id="1_0jl1m"]
 [ext_resource type="Texture2D" uid="uid://cxv0dyocoj732" path="res://assets/GreyGridBackground.png" id="1_e0b1p"]
 [ext_resource type="Texture2D" uid="uid://bnxo13j4egs0s" path="res://assets/smooth-stones-beach-sunset.jpg" id="1_mueea"]
 [ext_resource type="Script" path="res://scripts/tile_spawner.gd" id="2_bqqsl"]
+[ext_resource type="Script" path="res://scripts/music_replay.gd" id="2_sbme5"]
 [ext_resource type="Texture2D" uid="uid://xlm1fotcd2es" path="res://assets/gift-jam-player.png" id="3_j6dm8"]
 [ext_resource type="Script" path="res://scripts/chill_player.gd" id="3_rjsnb"]
+[ext_resource type="AudioStream" uid="uid://dudbyonbju7ls" path="res://assets/whoosh_cropped.mp3" id="5_fw73q"]
 [ext_resource type="Script" path="res://scripts/restart_button.gd" id="5_nocda"]
+[ext_resource type="AudioStream" uid="uid://d052cemyw24rw" path="res://assets/success_cropped.mp3" id="8_4a6n3"]
+[ext_resource type="Texture2D" uid="uid://doe6u1w1iop38" path="res://assets/emoji_tiles/gift-jam-player2.png" id="10_s3biq"]
+[ext_resource type="Texture2D" uid="uid://cgo10qxx5ujbo" path="res://assets/emoji_tiles/gift-jam-player3.png" id="11_fsscp"]
+[ext_resource type="Texture2D" uid="uid://8vprcdtwpsb" path="res://assets/emoji_tiles/gift-jam-player4.png" id="12_ywo3l"]
+[ext_resource type="Texture2D" uid="uid://byp4sf7f6q4jm" path="res://assets/emoji_tiles/gift-jam-player5.png" id="13_1d0fo"]
 
 [node name="chillGame" type="Node2D"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_0jl1m")
+autoplay = true
+script = ExtResource("2_sbme5")
 
 [node name="Smooth-stones-beach-sunset" type="Sprite2D" parent="."]
 texture_filter = 2
@@ -15,10 +28,11 @@ scale = Vector2(0.576165, 0.576165)
 texture = ExtResource("1_mueea")
 
 [node name="Score" type="Label" parent="."]
+process_mode = 3
 offset_left = -459.0
-offset_top = -814.0
+offset_top = -738.0
 offset_right = 449.0
-offset_bottom = -609.0
+offset_bottom = -533.0
 theme_override_font_sizes/font_size = 150
 text = "Score: 0"
 horizontal_alignment = 1
@@ -29,8 +43,9 @@ zoom = Vector2(0.4, 0.4)
 [node name="ControlParent" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
+offset_top = 76.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 116.0
 
 [node name="Player" type="Node2D" parent="."]
 z_index = 1
@@ -41,13 +56,54 @@ script = ExtResource("3_rjsnb")
 scale = Vector2(0.26, 0.26)
 texture = ExtResource("3_j6dm8")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("5_fw73q")
+volume_db = -20.0
+pitch_scale = 1.3
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("5_fw73q")
+volume_db = -20.0
+pitch_scale = 1.3
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("5_fw73q")
+volume_db = -20.0
+pitch_scale = 1.3
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("5_fw73q")
+volume_db = -20.0
+pitch_scale = 1.3
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("5_fw73q")
+volume_db = -20.0
+pitch_scale = 1.3
+
+[node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("5_fw73q")
+volume_db = -20.0
+pitch_scale = 1.3
+
 [node name="GreyGrid" type="Sprite2D" parent="."]
 texture = ExtResource("1_e0b1p")
 script = ExtResource("2_bqqsl")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="combineSound" type="Node2D" parent="."]
+position = Vector2(0, 76)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="combineSound"]
+stream = ExtResource("8_4a6n3")
+pitch_scale = 5.0
+
+[node name="deadPopup" type="Node2D" parent="."]
 visible = false
-z_index = 3
+z_index = 1
+
+[node name="ColorRect" type="ColorRect" parent="deadPopup"]
+process_mode = 3
+z_index = 2
 offset_left = -3171.0
 offset_top = -3156.0
 offset_right = -3131.0
@@ -55,13 +111,12 @@ offset_bottom = -3116.0
 scale = Vector2(239.559, 239.559)
 color = Color(0, 0, 0, 0.243137)
 
-[node name="GameOverLabel" type="Label" parent="."]
-visible = false
-z_index = 4
-offset_left = -581.0
-offset_top = -155.0
-offset_right = 566.0
-offset_bottom = 118.0
+[node name="GameOverLabel" type="Label" parent="deadPopup"]
+z_index = 3
+offset_left = -593.0
+offset_top = -158.0
+offset_right = 554.0
+offset_bottom = 115.0
 theme_override_font_sizes/font_size = 200
 text = "GAME OVER"
 horizontal_alignment = 1
@@ -69,12 +124,139 @@ horizontal_alignment = 1
 [node name="RestartButton" type="Button" parent="."]
 process_mode = 3
 z_index = 5
-offset_left = -264.0
-offset_top = 634.0
-offset_right = 266.0
-offset_bottom = 809.0
+offset_left = -1400.0
+offset_top = 316.0
+offset_right = -870.0
+offset_bottom = 491.0
 theme_override_font_sizes/font_size = 110
 text = "Restart"
 script = ExtResource("5_nocda")
 
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 929.0
+offset_top = -334.0
+offset_right = 1889.0
+offset_bottom = 386.0
+scale = Vector2(0.164466, 0.164466)
+texture_normal = ExtResource("10_s3biq")
+
+[node name="CharOneBlock" type="ColorRect" parent="."]
+offset_left = 907.0
+offset_top = -365.0
+offset_right = 960.0
+offset_bottom = -317.0
+scale = Vector2(3.78139, 3.78139)
+color = Color(1, 1, 1, 0.784314)
+
+[node name="points_1000" type="Label" parent="CharOneBlock"]
+layout_mode = 0
+offset_left = 55.7995
+offset_top = 15.3382
+offset_right = 612.799
+offset_bottom = 152.338
+scale = Vector2(0.0984051, 0.0984051)
+theme_override_font_sizes/font_size = 100
+text = "100 POINTS"
+
+[node name="TextureButton2" type="TextureButton" parent="."]
+offset_left = 929.0
+offset_top = -88.0
+offset_right = 1889.0
+offset_bottom = 632.0
+scale = Vector2(0.164466, 0.164466)
+texture_normal = ExtResource("11_fsscp")
+
+[node name="CharOneBlock2" type="ColorRect" parent="."]
+offset_left = 907.0
+offset_top = -119.0
+offset_right = 960.0
+offset_bottom = -71.0
+scale = Vector2(3.78139, 3.78139)
+color = Color(1, 1, 1, 0.784314)
+
+[node name="points_1000" type="Label" parent="CharOneBlock2"]
+layout_mode = 0
+offset_left = 55.7995
+offset_top = 15.3382
+offset_right = 612.799
+offset_bottom = 152.338
+scale = Vector2(0.0984051, 0.0984051)
+theme_override_font_sizes/font_size = 100
+text = "2,500 POINTS"
+
+[node name="TextureButton3" type="TextureButton" parent="."]
+offset_left = 929.0
+offset_top = 164.0
+offset_right = 1889.0
+offset_bottom = 884.0
+scale = Vector2(0.164466, 0.164466)
+texture_normal = ExtResource("12_ywo3l")
+
+[node name="CharOneBlock3" type="ColorRect" parent="."]
+offset_left = 907.0
+offset_top = 133.0
+offset_right = 960.0
+offset_bottom = 181.0
+scale = Vector2(3.78139, 3.78139)
+color = Color(1, 1, 1, 0.784314)
+
+[node name="points_1000" type="Label" parent="CharOneBlock3"]
+layout_mode = 0
+offset_left = 55.7995
+offset_top = 15.3382
+offset_right = 612.799
+offset_bottom = 152.338
+scale = Vector2(0.0984051, 0.0984051)
+theme_override_font_sizes/font_size = 100
+text = "10,000 POINTS"
+
+[node name="TextureButton4" type="TextureButton" parent="."]
+offset_left = 929.0
+offset_top = 413.0
+offset_right = 1889.0
+offset_bottom = 1133.0
+scale = Vector2(0.164466, 0.164466)
+texture_normal = ExtResource("13_1d0fo")
+
+[node name="CharOneBlock4" type="ColorRect" parent="."]
+offset_left = 907.0
+offset_top = 382.0
+offset_right = 960.0
+offset_bottom = 430.0
+scale = Vector2(3.78139, 3.78139)
+color = Color(1, 1, 1, 0.784314)
+
+[node name="points_1000" type="Label" parent="CharOneBlock4"]
+layout_mode = 0
+offset_left = 55.7995
+offset_top = 15.3382
+offset_right = 612.799
+offset_bottom = 152.338
+scale = Vector2(0.0984051, 0.0984051)
+theme_override_font_sizes/font_size = 100
+text = "100,000 POINTS"
+
+[node name="TextureButton5" type="TextureButton" parent="."]
+offset_left = 929.0
+offset_top = -580.0
+offset_right = 1889.0
+offset_bottom = 140.0
+scale = Vector2(0.164466, 0.164466)
+texture_normal = ExtResource("3_j6dm8")
+
+[node name="points_1000" type="Label" parent="."]
+offset_left = 1118.0
+offset_top = -553.0
+offset_right = 1675.0
+offset_bottom = -416.0
+scale = Vector2(0.0984051, 0.0984051)
+theme_override_font_sizes/font_size = 475
+text = "FREE"
+
+[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]
 [connection signal="pressed" from="RestartButton" to="RestartButton" method="_on_pressed"]
+[connection signal="pressed" from="TextureButton" to="Player" method="_on_texture_button_pressed"]
+[connection signal="pressed" from="TextureButton2" to="Player" method="_on_texture_button_2_pressed"]
+[connection signal="pressed" from="TextureButton3" to="Player" method="_on_texture_button_3_pressed"]
+[connection signal="pressed" from="TextureButton4" to="Player" method="_on_texture_button_4_pressed"]
+[connection signal="pressed" from="TextureButton5" to="Player" method="_on_texture_button_5_pressed"]

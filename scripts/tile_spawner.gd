@@ -4,6 +4,7 @@ var tile_array = []
 @onready var score = $"../Score"
 
 var tile_1 = preload("res://scenes/tile_1.tscn")
+@onready var audio_stream_player = $"../combineSound/AudioStreamPlayer"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,42 +37,18 @@ func restart():
 	Globals.matrix=[[0,0,0,0,0,0],[0,-1,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]
 	Globals.player_pos=Vector2(-337.5,-337.5)
 	Globals.player_moved="down"
-	Globals.move_cycle = 6
+	Globals.move_cycle = 8
 
-@onready var color_rect = $"../ColorRect"
-@onready var game_over_label = $"../GameOverLabel"
+@onready var dead_popup = $"../deadPopup"
 
 func generate_tile():
 	var rand_open_tile = get_random_vector2(find_zero_positions(Globals.matrix))
 	if rand_open_tile == Vector2(0,0):
 		get_tree().paused = true
-		color_rect.visible = true
-		game_over_label = true
+		dead_popup.visible = true
 		print("GAME OVER")
-	var game_is_over = true
-	for i in range(4):
-		for j in range(4):
-			print(Globals.matrix[i+1][j+1])
-			if Globals.matrix[i+1][j+1] == 0:
-				game_is_over = false
-	
-	if game_is_over:
-		game_over_label = true
-		get_tree().paused = true
-		color_rect.visible = true
-		print("GAME OVER")
-	
-	spawn_tile(randi_range(1,2), rand_open_tile)
-	#print(rand_open_tile)
-	#for i in range(1):
-		#var random_x_start = randi_range(0,3)
-		#var random_y_start = randi_range(0,3)
-		#for y in range(6):
-			#for x in range(6):
-				#if y == random_y_start and x == random_x_start:
-					#var tile_birth_size: int = randi_range(1,2)
-					#spawn_tile(tile_birth_size,x,y)
-					#print("birth: " + str(tile_birth_size) + " x: " + str(x) + " y: " + str(y))
+	else:
+		spawn_tile(randi_range(1,2), rand_open_tile)
 
 func spawn_tile(size, pos):
 	var tile = tile_1.instantiate()
@@ -84,7 +61,7 @@ func spawn_tile(size, pos):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Globals.move_cycle >= 6:
+	if Globals.move_cycle >= 8:
 		Globals.move_cycle = 0
 		generate_tile()
 		##print(" ")
@@ -101,6 +78,10 @@ func _process(delta):
 		print(Globals.matrix[5])
 		print(" ")
 
+func play_sound(size):
+	audio_stream_player.pitch_scale = 5.0 / float(size - 1.0)
+	audio_stream_player.play()
+
 func push_boxes(box_row, box_col, direction):
 	var delta_row = direction.x
 	var delta_col = direction.y
@@ -114,6 +95,7 @@ func push_boxes(box_row, box_col, direction):
 			if Globals.matrix[next_col][next_row] == Globals.matrix[box_col][box_row]:
 				Globals.increase_points(pow(2,Globals.matrix[next_col][next_row] + 1))
 				score.text = "Score: " + str(Globals.points)
+				play_sound(Globals.matrix[next_col][next_row] + 1)
 				Globals.tell_box_to_move(box_row,box_col,direction)
 				Globals.tell_box_to_upgrade(next_row,next_col)
 				Globals.matrix[next_col][next_row] = Globals.matrix[next_col][next_row] + 1
