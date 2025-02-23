@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://cck3ol6ehi8nw"]
 
-[ext_resource type="Script" path="res://scenes/cookie_clicker.gd" id="1_a8xpw"]
+[ext_resource type="Script" path="res://cookie_clicker.gd" id="1_a8xpw"]
 [ext_resource type="Texture2D" uid="uid://wnkib8gowh8b" path="res://assets/button.png" id="1_fb4d5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yprfo"]
