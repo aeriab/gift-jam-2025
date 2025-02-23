@@ -7,6 +7,7 @@ var tile_1 = preload("res://scenes/tile_scenes/tile_1.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	generate_tile()
+	Globals.move_cycle = 1
 
 func generate_tile():
 	for i in range(2):
@@ -33,19 +34,19 @@ func _process(delta):
 	if Globals.move_cycle >= 1:
 		Globals.move_cycle = 0
 		#generate_tile()
-		print(" ")
-		print(" ")
-		print(" ")
-		print(" ")
-		print(" ")
-		print(" ")
-		print(Globals.matrix[0])
-		print(Globals.matrix[1])
-		print(Globals.matrix[2])
-		print(Globals.matrix[3])
-		print(Globals.matrix[4])
-		print(Globals.matrix[5])
-		print(" ")
+		#print(" ")
+		#print(" ")
+		#print(" ")
+		#print(" ")
+		#print(" ")
+		#print(" ")
+		#print(Globals.matrix[0])
+		#print(Globals.matrix[1])
+		#print(Globals.matrix[2])
+		#print(Globals.matrix[3])
+		#print(Globals.matrix[4])
+		#print(Globals.matrix[5])
+		#print(" ")
 
 func push_boxes(box_row, box_col, direction):
 	var delta_row = direction.x
@@ -67,7 +68,7 @@ func move_player(player_row, player_col, direction):
 	var delta_row = direction.x
 	var delta_col = direction.y
 	var next_row = player_row + delta_row
-	var next_col = player_col + delta_col
+	var next_col = player_col - delta_col
 	
 	if !(0 <= next_row and next_row < len(Globals.matrix) and 0 <= next_col and next_col < len(Globals.matrix[0])):
 		return false
