@@ -36,6 +36,14 @@ func _process(delta):
 		desired_pos.x += 225 * Globals.direction_of_interest.x
 		Globals.x_of_interest = -69420
 		Globals.y_of_interest = -69420
+		new_norm_pos()
+	
+	if (normed_pos.x == Globals.x_of_interest2 and normed_pos.y == Globals.y_of_interest2):
+		desired_pos.y -= 225 * Globals.direction_of_interest2.y
+		desired_pos.x += 225 * Globals.direction_of_interest2.x
+		Globals.x_of_interest2 = -69420
+		Globals.y_of_interest2 = -69420
+		new_norm_pos()
 	
 	#if near_player_pos():
 		#if Globals.player_moved == "up":
@@ -59,7 +67,7 @@ func _process(delta):
 	position = position.lerp(desired_pos, delta * FOLLOW_SPEED)
 
 func new_norm_pos():
-	Globals.matrix[normed_pos.y][normed_pos.x] = 0
+	#Globals.matrix[normed_pos.y][normed_pos.x] = 0
 	normed_pos.x = (desired_pos.x / 225.0) + 2.5
 	normed_pos.y = (desired_pos.y / 225.0) + 2.5
-	Globals.matrix[normed_pos.y][normed_pos.x] = size
+	#Globals.matrix[normed_pos.y][normed_pos.x] = size

@@ -26,7 +26,7 @@ func spawn_tile(size, x, y):
 	tile.x = x
 	tile.y = y
 	add_child(tile)
-	#Globals.matrix[y][x] = size
+	Globals.matrix[y+1][x+1] = size
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -64,6 +64,7 @@ func push_boxes(box_row, box_col, direction):
 	Globals.matrix[box_col][box_row] = 0
 	
 	Globals.tell_box_to_move(box_row,box_col,direction)
+	print("telling x:" + str(box_row) + " y:" + str(box_col) + " to move: " + str(direction))
 	
 	return true
 
