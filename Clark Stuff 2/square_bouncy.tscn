@@ -12,6 +12,8 @@ size = Vector2(63, 64)
 
 [node name="SquareBouncy" type="RigidBody2D"]
 physics_material_override = ExtResource("1_db675")
+contact_monitor = true
+max_contacts_reported = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_ea824")

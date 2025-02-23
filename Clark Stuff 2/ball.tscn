@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://e43b7iv56suf"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://dygucv7noqjw2" path="res://Clark Stuff 2/BouncePhysicsMat.tres" id="1_l2l7n"]
-[ext_resource type="Script" path="res://Clark Stuff 1/ball.gd" id="2_yde4t"]
+[ext_resource type="Script" path="res://Clark Stuff 2/ball.gd" id="2_xgs5q"]
 [ext_resource type="AudioStream" uid="uid://b0mo8e1wgxnvl" path="res://Clark Stuff 1/hit.mp3" id="3_kdrcm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3nb50"]
@@ -17,7 +17,7 @@ gradient = SubResource("Gradient_mwo7p")
 physics_material_override = ExtResource("1_l2l7n")
 contact_monitor = true
 max_contacts_reported = 1
-script = ExtResource("2_yde4t")
+script = ExtResource("2_xgs5q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_3nb50")
