@@ -30,7 +30,19 @@ texture = ExtResource("3_j6dm8")
 texture = ExtResource("1_e0b1p")
 script = ExtResource("2_bqqsl")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+z_index = 2
+offset_left = -4462.0
+offset_top = -3130.0
+offset_right = -4422.0
+offset_bottom = -3090.0
+scale = Vector2(225.959, 225.959)
+color = Color(0.639216, 0.639216, 0.639216, 0.513726)
+
 [node name="RestartButton" type="Button" parent="."]
+process_mode = 3
+z_index = 5
 offset_left = -264.0
 offset_top = 634.0
 offset_right = 266.0

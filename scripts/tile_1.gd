@@ -1,4 +1,5 @@
 extends Sprite2D
+@onready var label = $Label
 
 var size: int
 var x: int
@@ -56,20 +57,28 @@ func _process(delta):
 	
 	if size == 1:
 		texture = _1_ANGEL_TILE
+		label.text = "2"
 	elif size == 2:
 		texture = _2_TOXIC_TILE
+		label.text = "4"
 	elif size == 3:
 		texture = _3_COWBOY_TILE
+		label.text = "8"
 	elif size == 4:
 		texture = _4_CHILLY_TILE
+		label.text = "16"
 	elif size == 5:
 		texture = _5_DEMON_TILE
+		label.text = "32"
 	elif size == 6:
 		texture = _6_BLUE_SKULL_TILE
+		label.text = "64"
 	elif size == 7:
 		texture = _7_BARF_TILE
+		label.text = "128"
 	elif size == 8:
 		texture = _8_MONEY_TILE
+		label.text = "256"
 	
 	position = position.lerp(desired_pos, delta * FOLLOW_SPEED)
 

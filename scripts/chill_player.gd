@@ -7,6 +7,10 @@ const FOLLOW_SPEED = 8.0
 var normed_pos = Vector2(1,1)
 @onready var grey_grid = $"../GreyGrid"
 
+func restart():
+	desired_pos = Vector2(-337.5,-337.5)
+	normed_pos = Vector2(1,1)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	new_norm_pos()

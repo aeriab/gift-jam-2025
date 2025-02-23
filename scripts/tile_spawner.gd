@@ -28,10 +28,22 @@ func get_random_vector2(vector2_array: Array[Vector2]) -> Vector2:
 	var random_index = randi() % vector2_array.size()
 	return vector2_array[random_index]
 
+func restart():
+	for child in get_children():
+		remove_child(child)
+		child.queue_free()
+	Globals.matrix=[[0,0,0,0,0,0],[0,-1,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]
+	Globals.player_pos=Vector2(-337.5,-337.5)
+	Globals.player_moved="down"
+	Globals.move_cycle = 6
+
+@onready var color_rect = $"../ColorRect"
 
 func generate_tile():
 	var rand_open_tile = get_random_vector2(find_zero_positions(Globals.matrix))
 	if rand_open_tile == Vector2(0,0):
+		get_tree().paused = true
+		color_rect.visible = true
 		print("GAME OVER")
 	spawn_tile(randi_range(1,2), rand_open_tile)
 	#print(rand_open_tile)
