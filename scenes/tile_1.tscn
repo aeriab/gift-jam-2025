@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://scripts/tile_1.gd" id="2_8evbc"]
 
 [node name="tile_1" type="Sprite2D"]
+texture_filter = 1
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_sdw27")
 script = ExtResource("2_8evbc")

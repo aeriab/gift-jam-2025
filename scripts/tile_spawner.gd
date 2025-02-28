@@ -34,7 +34,7 @@ func restart():
 	for child in get_children():
 		remove_child(child)
 		child.queue_free()
-	Globals.matrix=[[0,0,0,0,0,0],[0,-1,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]
+	Globals.matrix=[[-1,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]
 	Globals.player_pos=Vector2(-337.5,-337.5)
 	Globals.player_moved="down"
 	Globals.move_cycle = 8

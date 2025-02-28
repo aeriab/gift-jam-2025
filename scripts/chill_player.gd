@@ -1,10 +1,10 @@
 extends Node2D
 
-var desired_pos = Vector2(-337.5,-337.5)
+var desired_pos = Vector2(-562.5,-562.5)
 
 const FOLLOW_SPEED = 8.0
 
-var normed_pos = Vector2(1,1)
+var normed_pos = Vector2(0,0)
 @onready var grey_grid = $"../GreyGrid"
 @onready var audio_stream_player = $AudioStreamPlayer
 @onready var audio_stream_player_2 = $AudioStreamPlayer2
@@ -14,8 +14,8 @@ var normed_pos = Vector2(1,1)
 @onready var audio_stream_player_6 = $AudioStreamPlayer6
 
 func restart():
-	desired_pos = Vector2(-337.5,-337.5)
-	normed_pos = Vector2(1,1)
+	desired_pos = Vector2(-562.5,-562.5)
+	normed_pos = Vector2(0,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

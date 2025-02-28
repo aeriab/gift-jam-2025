@@ -78,6 +78,8 @@ mouse_click={
 
 [rendering]
 
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 anti_aliasing/screen_space_roughness_limiter/enabled=false
 anti_aliasing/screen_space_roughness_limiter/amount=0.56
 anti_aliasing/screen_space_roughness_limiter/limit=0.13

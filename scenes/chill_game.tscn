@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://png5xwsvvejc"]
+[gd_scene load_steps=16 format=3 uid="uid://png5xwsvvejc"]
 
 [ext_resource type="AudioStream" uid="uid://bvvwgmc3apq8b" path="res://assets/lovely_music_cropped.mp3" id="1_0jl1m"]
 [ext_resource type="Texture2D" uid="uid://cxv0dyocoj732" path="res://assets/GreyGridBackground.png" id="1_e0b1p"]
+[ext_resource type="Script" path="res://scripts/chill_game.gd" id="1_i3280"]
 [ext_resource type="Texture2D" uid="uid://bnxo13j4egs0s" path="res://assets/smooth-stones-beach-sunset.jpg" id="1_mueea"]
 [ext_resource type="Script" path="res://scripts/tile_spawner.gd" id="2_bqqsl"]
 [ext_resource type="Script" path="res://scripts/music_replay.gd" id="2_sbme5"]
@@ -16,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://byp4sf7f6q4jm" path="res://assets/emoji_tiles/gift-jam-player5.png" id="13_1d0fo"]
 
 [node name="chillGame" type="Node2D"]
+script = ExtResource("1_i3280")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_0jl1m")
@@ -253,6 +255,29 @@ offset_bottom = -416.0
 scale = Vector2(0.0984051, 0.0984051)
 theme_override_font_sizes/font_size = 475
 text = "FREE"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 6
+offset_left = -1986.0
+offset_top = -1164.0
+offset_right = 2358.0
+offset_bottom = 1546.0
+color = Color(0.827451, 0.847059, 0.654902, 1)
+
+[node name="Gift-jam-player5" type="Sprite2D" parent="."]
+z_index = 7
+position = Vector2(0, -88.1956)
+scale = Vector2(1.6939, 1.6939)
+texture = ExtResource("13_1d0fo")
+
+[node name="ClickToPlay" type="Label" parent="."]
+z_index = 7
+offset_left = -696.0
+offset_top = 354.804
+offset_right = 711.0
+offset_bottom = 627.804
+theme_override_font_sizes/font_size = 200
+text = "CLICK TO PLAY"
 
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]
 [connection signal="pressed" from="RestartButton" to="RestartButton" method="_on_pressed"]
