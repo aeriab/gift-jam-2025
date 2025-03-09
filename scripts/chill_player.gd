@@ -1,10 +1,10 @@
 extends Node2D
 
-var desired_pos = Vector2(-562.5,-562.5)
+@export var desired_pos = Vector2(-562.5,-562.5)
 
 const FOLLOW_SPEED = 8.0
 
-var normed_pos = Vector2(0,0)
+@export var normed_pos = Vector2(0,0)
 @onready var grey_grid = $"../GreyGrid"
 @onready var audio_stream_player = $AudioStreamPlayer
 @onready var audio_stream_player_2 = $AudioStreamPlayer2
@@ -26,25 +26,26 @@ func _ready():
 @onready var char_one_block_3 = $"../CharOneBlock3"
 @onready var char_one_block_4 = $"../CharOneBlock4"
 
-var char_one_free:bool = false
-var char_two_free:bool = false
-var char_three_free:bool = false
-var char_four_free:bool = false
+@export var char_one_free:bool = false
+@export var char_two_free:bool = false
+@export var char_three_free:bool = false
+@export var char_four_free:bool = false
 
 
 func _process(delta):
-	if Globals.points >= 100 and !char_one_free:
-		char_one_block.queue_free()
-		char_one_free = true
-	if Globals.points >= 2500 and !char_two_free:
-		char_one_block_2.queue_free()
-		char_two_free = true
-	if Globals.points >= 10000 and !char_three_free:
-		char_one_block_3.queue_free()
-		char_three_free = true
-	if Globals.points >= 100000 and !char_four_free:
-		char_one_block_4.queue_free()
-		char_four_free = true
+	if Globals.isInGame:
+		if Globals.points >= 100 and !char_one_free:
+			char_one_block.queue_free()
+			char_one_free = true
+		if Globals.points >= 2500 and !char_two_free:
+			char_one_block_2.queue_free()
+			char_two_free = true
+		if Globals.points >= 10000 and !char_three_free:
+			char_one_block_3.queue_free()
+			char_three_free = true
+		if Globals.points >= 100000 and !char_four_free:
+			char_one_block_4.queue_free()
+			char_four_free = true
 	
 	
 	

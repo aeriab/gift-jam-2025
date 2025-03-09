@@ -1,9 +1,9 @@
 extends Sprite2D
 
-var tile_array = []
+@export var tile_array = []
 @onready var score = $"../Score"
 
-var tile_1 = preload("res://scenes/tile_1.tscn")
+@export var tile_1 = preload("res://scenes/tile_1.tscn")
 @onready var audio_stream_player = $"../combineSound/AudioStreamPlayer"
 
 # Called when the node enters the scene tree for the first time.
@@ -51,16 +51,27 @@ func generate_tile():
 		spawn_tile(randi_range(1,2), rand_open_tile)
 
 func spawn_tile(size, pos):
-	var tile = tile_1.instantiate()
-	tile.size = size
-	tile.x = pos.x - 1
-	tile.y = pos.y - 1
-	add_child(tile)
-	Globals.matrix[pos.y][pos.x] = size
+	if size > 0:
+		var tile = tile_1.instantiate()
+		tile.size = size
+		tile.x = pos.x - 1
+		tile.y = pos.y - 1
+		add_child(tile)
+		Globals.matrix[pos.y][pos.x] = size
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	if !Globals.tilesBroughtBack:
+		Globals.tilesBroughtBack = true
+		for y in range(Globals.matrix.size()):
+			var row = Globals.matrix[y]
+			if row is Array: # Check if the row is actually an array
+				for x in range(row.size()):
+					spawn_tile(Globals.matrix[y][x], Vector2(x,y))
+	
+	
 	if Globals.move_cycle >= 8:
 		Globals.move_cycle = 0
 		generate_tile()
@@ -69,14 +80,14 @@ func _process(delta):
 		##print(" ")
 		##print(" ")
 		##print(" ")
-		print(" ")
-		print(Globals.matrix[0])
-		print(Globals.matrix[1])
-		print(Globals.matrix[2])
-		print(Globals.matrix[3])
-		print(Globals.matrix[4])
-		print(Globals.matrix[5])
-		print(" ")
+		#print(" ")
+		#print(Globals.matrix[0])
+		#print(Globals.matrix[1])
+		#print(Globals.matrix[2])
+		#print(Globals.matrix[3])
+		#print(Globals.matrix[4])
+		#print(Globals.matrix[5])
+		#print(" ")
 
 func play_sound(size):
 	audio_stream_player.pitch_scale = 5.0 / float(size - 1.0)

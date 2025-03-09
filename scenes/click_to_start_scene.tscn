@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://ds81qerf8e4px"]
+
+[ext_resource type="Script" path="res://scripts/click_to_start_scene.gd" id="1_4gywd"]
+[ext_resource type="Texture2D" uid="uid://byp4sf7f6q4jm" path="res://assets/emoji_tiles/gift-jam-player5.png" id="2_scq5j"]
+
+[sub_resource type="Theme" id="Theme_i0jyy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ptijf"]
+bg_color = Color(0.6, 0.6, 0.6, 0.254902)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ols32"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="ClickToStartScene" type="Node2D"]
+script = ExtResource("1_4gywd")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 6
+offset_left = -1986.0
+offset_top = -1164.0
+offset_right = 2358.0
+offset_bottom = 1546.0
+color = Color(0.827451, 0.847059, 0.654902, 1)
+
+[node name="Gift-jam-player5" type="Sprite2D" parent="."]
+z_index = 7
+position = Vector2(0, -269.196)
+scale = Vector2(1.6939, 1.6939)
+texture = ExtResource("2_scq5j")
+
+[node name="ClickToPlay" type="Label" parent="."]
+z_index = 7
+offset_left = -696.0
+offset_top = 173.804
+offset_right = 711.0
+offset_bottom = 722.804
+theme_override_font_sizes/font_size = 200
+text = "CLICK TO PLAY
+CHILLMOJI"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+z_index = 7
+offset_left = -2386.0
+offset_top = -1359.0
+offset_right = 2674.0
+offset_bottom = 1819.0
+theme = SubResource("Theme_i0jyy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ptijf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ols32")
+text = " "
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.375, 0.375)
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
